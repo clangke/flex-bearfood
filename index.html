@@ -9,7 +9,7 @@
       text-align: center;
       padding: 0;
       margin: 0;
-      background: #1A1A1A; /* 匹配图片的暗色背景 */
+      background: #1A1A1A;
       color: #fff;
       display: flex;
       flex-direction: column;
@@ -20,14 +20,13 @@
 
     .container {
       width: 90%;
-      max-width: 600px; /* 限制最大宽度，保持紧凑 */
+      max-width: 600px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px; /* 元素间的间距 */
+      gap: 20px;
     }
 
-    /* 🔑 YOUR EXCLUSIVE ACCESS 标题样式 */
     h1 {
       font-size: 28px;
       font-weight: 700;
@@ -35,7 +34,6 @@
       margin: 0;
     }
 
-    /* 🔑 钥匙图标样式 */
     .key-icon {
       font-size: 1.2em;
       margin-right: 8px;
@@ -44,47 +42,42 @@
     /* 正方形图片容器 */
     .image-container {
       width: 100%;
-      /* 强制正方形比例 (宽度=高度) */
       aspect-ratio: 1 / 1; 
       margin: 10px 0;
-      border-radius: 8px; /* 适度圆角，防止硬直角 */
-      border: 3px solid #C5A059; /* 匹配图片的古铜金边框 */
-      overflow: hidden; /* 裁剪掉容器外的内容 */
+      border-radius: 8px;
+      border: 3px solid #C5A059;
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #000; /* 图片未填充区域的底色 */
+      background-color: #000;
     }
 
-    /* 核心图片样式：完美放进正方形，且不裁剪图片内容 */
     .hero-image {
       max-width: 100%;
       max-height: 100%;
-      object-fit: contain; /* 保证图片完整显示，不拉伸不裁剪 */
+      object-fit: contain;
     }
 
-    /* 倒计时文本 */
     .countdown-text {
       font-size: 18px;
       margin: 0;
       opacity: 0.9;
     }
 
-    /* 倒计时数字样式：大号金色 */
     .countdown-number {
       font-size: 64px;
-      color: #C5A059; /* 古铜金 */
+      color: #C5A059;
       font-weight: bold;
-      margin: -10px 0 10px 0; /* 微调位置，靠近文字 */
+      margin: -10px 0 10px 0;
     }
 
-    /* 金色按钮样式：匹配图片的配色和形状 */
     .button {
-      background: #C5A059; /* 古铜金 */
-      color: #000; /* 黑色文字 */
+      background: #C5A059;
+      color: #000;
       padding: 16px 0;
-      width: 100%; /* 按钮宽度与容器一致 */
-      border-radius: 4px; /* 较小的圆角 */
+      width: 100%;
+      border-radius: 4px;
       font-weight: bold;
       letter-spacing: 1px;
       text-transform: uppercase;
@@ -97,28 +90,34 @@
     }
 
     .button:hover {
-      background: #D4B26E; /* 悬停时略微变亮 */
+      background: #D4B26E;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1><span class="key-icon">🔑</span>YOUR EXCLUSIVE ACCESS</h1>
-    <p class="countdown-text">This special offer expires in <span id="countdown-small">5</span> seconds</p>
-    <div class="countdown-number" id="countdown-large">5</div>
+
+    <!-- 1. HTML 中的初始数字已修改为 3 -->
+    <p class="countdown-text">This special offer expires in <span id="countdown-small">3</span> seconds</p>
+    
+    <!-- 2. 大号倒计时数字初始值已修改为 3 -->
+    <div class="countdown-number" id="countdown-large">3</div>
+
     <div class="image-container">
       <img src="https://invitehealth.com/cdn/shop/files/Invite_Health_-_Our_Mission_Image_with_text.jpg?v=1693247946&width=540" alt="VIP Privilege Content" class="hero-image">
     </div>
+
     <a href="https://track.flexlinkspro.com/g.ashx?foid=156178.67212.4611686018427606147&trid=1508723.240334&foc=16&fot=9999&fos=6" class="button">Claim Your Privilege</a>
   </div>
 
   <script>
+    // 3. JavaScript 倒计时 3秒
     let time = 3;
     const countdownSmallEl = document.getElementById("countdown-small");
     const countdownLargeEl = document.getElementById("countdown-large");
     const targetUrl = "https://track.flexlinkspro.com/g.ashx?foid=156178.67212.4611686018427606147&trid=1508723.240334&foc=16&fot=9999&fos=6";
 
-    // 
     function updateCountdown() {
       if (countdownSmallEl) countdownSmallEl.textContent = time;
       if (countdownLargeEl) countdownLargeEl.textContent = time;
@@ -128,9 +127,8 @@
       time--;
       if (time <= 0) {
         clearInterval(timer);
-        time = 0; // 
+        time = 0;
         updateCountdown();
-        // 
         window.location.href = targetUrl;
       } else {
         updateCountdown();
