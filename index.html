@@ -1,67 +1,139 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
-  <title>Exclusive VIP Offer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exclusive VIP Offer - InVite Health</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: 'Helvetica Neue', sans-serif;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
       text-align: center;
-      padding: 40px;
-      background: #000;
+      padding: 0;
+      margin: 0;
+      background: #1A1A1A; /* 匹配图片的暗色背景 */
       color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
     }
+
+    .container {
+      width: 90%;
+      max-width: 600px; /* 限制最大宽度，保持紧凑 */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px; /* 元素间的间距 */
+    }
+
+    /* 🔑 YOUR EXCLUSIVE ACCESS 标题样式 */
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin: 0;
+    }
+
+    /* 🔑 钥匙图标样式 */
+    .key-icon {
+      font-size: 1.2em;
+      margin-right: 8px;
+    }
+
+    /* 正方形图片容器 */
+    .image-container {
+      width: 100%;
+      /* 强制正方形比例 (宽度=高度) */
+      aspect-ratio: 1 / 1; 
+      margin: 10px 0;
+      border-radius: 8px; /* 适度圆角，防止硬直角 */
+      border: 3px solid #C5A059; /* 匹配图片的古铜金边框 */
+      overflow: hidden; /* 裁剪掉容器外的内容 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000; /* 图片未填充区域的底色 */
+    }
+
+    /* 核心图片样式：完美放进正方形，且不裁剪图片内容 */
     .hero-image {
-      width: 240px;
-      aspect-ratio: 1 / 1; /* 强制锁定正方形比例 */
-      object-fit: contain; /* 保证图片完整显示，不裁剪、不拉伸 */
-      margin: 20px auto;
-      border-radius: 12px; /* 适度圆角，若要硬朗直角可改为 0 */
-      border: 3px solid gold;
-      background-color: #111; /* 背景微底色，防止图层与页面全黑混在一起 */
-      box-sizing: border-box;
-      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain; /* 保证图片完整显示，不拉伸不裁剪 */
     }
+
+    /* 倒计时文本 */
+    .countdown-text {
+      font-size: 18px;
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    /* 倒计时数字样式：大号金色 */
+    .countdown-number {
+      font-size: 64px;
+      color: #C5A059; /* 古铜金 */
+      font-weight: bold;
+      margin: -10px 0 10px 0; /* 微调位置，靠近文字 */
+    }
+
+    /* 金色按钮样式：匹配图片的配色和形状 */
     .button {
-      background: gold;
-      color: #000;
-      padding: 18px 40px;
-      border-radius: 0;
+      background: #C5A059; /* 古铜金 */
+      color: #000; /* 黑色文字 */
+      padding: 16px 0;
+      width: 100%; /* 按钮宽度与容器一致 */
+      border-radius: 4px; /* 较小的圆角 */
       font-weight: bold;
       letter-spacing: 1px;
       text-transform: uppercase;
+      font-size: 16px;
       text-decoration: none;
       display: inline-block;
+      cursor: pointer;
+      border: none;
+      transition: background 0.3s ease;
     }
-    .countdown {
-      font-size: 24px;
-      color: gold;
-      margin: 30px 0;
+
+    .button:hover {
+      background: #D4B26E; /* 悬停时略微变亮 */
     }
   </style>
 </head>
 <body>
-  <img src="https://invitehealth.com/cdn/shop/files/Invite_Health_-_Our_Mission_Image_with_text.jpg?v=1693247946&width=540" alt="VIP Badge" class="hero-image">
-  <h1>🔑 YOUR EXCLUSIVE ACCESS</h1>
-  <p>This special offer expires in <span id="countdown-text">5</span> seconds</p>
-  
-  <div class="countdown" id="countdown">5</div>
-  <a href="https://track.flexlinkspro.com/g.ashx?foid=156178.67212.4611686018427606147&trid=1508723.240334&foc=16&fot=9999&fos=6" class="button">Claim Your Privilege</a>
+  <div class="container">
+    <h1><span class="key-icon">🔑</span>YOUR EXCLUSIVE ACCESS</h1>
+    <p class="countdown-text">This special offer expires in <span id="countdown-small">5</span> seconds</p>
+    <div class="countdown-number" id="countdown-large">5</div>
+    <div class="image-container">
+      <img src="https://invitehealth.com/cdn/shop/files/Invite_Health_-_Our_Mission_Image_with_text.jpg?v=1693247946&width=540" alt="VIP Privilege Content" class="hero-image">
+    </div>
+    <a href="https://track.flexlinkspro.com/g.ashx?foid=156178.67212.4611686018427606147&trid=1508723.240334&foc=16&fot=9999&fos=6" class="button">Claim Your Privilege</a>
+  </div>
 
   <script>
     let time = 5;
-    const countdownEl = document.getElementById("countdown");
-    const countdownTextEl = document.getElementById("countdown-text");
+    const countdownSmallEl = document.getElementById("countdown-small");
+    const countdownLargeEl = document.getElementById("countdown-large");
     const targetUrl = "https://track.flexlinkspro.com/g.ashx?foid=156178.67212.4611686018427606147&trid=1508723.240334&foc=16&fot=9999&fos=6";
+
+    // 
+    function updateCountdown() {
+      if (countdownSmallEl) countdownSmallEl.textContent = time;
+      if (countdownLargeEl) countdownLargeEl.textContent = time;
+    }
 
     const timer = setInterval(() => {
       time--;
-      if (countdownEl) countdownEl.textContent = time;
-      if (countdownTextEl) countdownTextEl.textContent = time;
-      
       if (time <= 0) {
         clearInterval(timer);
+        time = 0; // 
+        updateCountdown();
+        // 
         window.location.href = targetUrl;
+      } else {
+        updateCountdown();
       }
     }, 1000);
   </script>
