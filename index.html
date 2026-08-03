@@ -12,10 +12,15 @@
       color: #fff;
     }
     .hero-image {
-      width: 200px;
+      width: 240px;
+      aspect-ratio: 1 / 1; /* 强制锁定正方形比例 */
+      object-fit: contain; /* 保证图片完整显示，不裁剪、不拉伸 */
       margin: 20px auto;
-      border-radius: 50%;
+      border-radius: 12px; /* 适度圆角，若要硬朗直角可改为 0 */
       border: 3px solid gold;
+      background-color: #111; /* 背景微底色，防止图层与页面全黑混在一起 */
+      box-sizing: border-box;
+      display: block;
     }
     .button {
       background: gold;
@@ -25,6 +30,8 @@
       font-weight: bold;
       letter-spacing: 1px;
       text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
     }
     .countdown {
       font-size: 24px;
@@ -36,20 +43,25 @@
 <body>
   <img src="https://invitehealth.com/cdn/shop/files/Invite_Health_-_Our_Mission_Image_with_text.jpg?v=1693247946&width=540" alt="VIP Badge" class="hero-image">
   <h1>🔑 YOUR EXCLUSIVE ACCESS</h1>
-  <p>This special offer expires in <span id="countdown">5</span> seconds</p>
+  <p>This special offer expires in <span id="countdown-text">5</span> seconds</p>
   
-  <div class="countdown" id="countdown"></div>
+  <div class="countdown" id="countdown">5</div>
   <a href="https://track.flexlinkspro.com/g.ashx?foid=156178.67212.4611686018427606147&trid=1508723.240334&foc=16&fot=9999&fos=6" class="button">Claim Your Privilege</a>
 
   <script>
     let time = 5;
     const countdownEl = document.getElementById("countdown");
+    const countdownTextEl = document.getElementById("countdown-text");
+    const targetUrl = "https://track.flexlinkspro.com/g.ashx?foid=156178.67212.4611686018427606147&trid=1508723.240334&foc=16&fot=9999&fos=6";
+
     const timer = setInterval(() => {
       time--;
-      countdownEl.textContent = time;
+      if (countdownEl) countdownEl.textContent = time;
+      if (countdownTextEl) countdownTextEl.textContent = time;
+      
       if (time <= 0) {
         clearInterval(timer);
-        window.location.href = "https://track.flexlinkspro.com/g.ashx?foid=156178.67212.4611686018427606147&trid=1508723.240334&foc=16&fot=9999&fos=6";
+        window.location.href = targetUrl;
       }
     }, 1000);
   </script>
